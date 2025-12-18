@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Добавить заметку</title>
+</head>
+<body>
+    <h2>Добавить заметку</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="text">Текст заметки:</label>
+        <input type="text" name="text" id="text">
+        <button type="submit">Сохранить</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>❗Удаление заметки</h2>
+
+<p>Вы уверены, что хотите удалить заметку?</p>
+
+<p><b>{{ note.text|truncatechars:100 }}</b></p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" style="color: white; background: red; padding: 5px 10px;">
+        Удалить
+    </button>
+    <a href="{% url 'note_detail' note.id %}">Отмена</a>
+</form>
+{% endblock %}

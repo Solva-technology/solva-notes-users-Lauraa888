@@ -1,0 +1,37 @@
+{% extends "base.html" %} 
+
+{% block title %}Заметка {{ note.id }}{% endblock %}
+
+{% block content %}
+<h1>Заметка №{{ note.id }}</h1>
+
+<p><b>Полный текст:</b> {{ note.content }}</p>
+
+<h3>Автор</h3>
+<p><b>Логин:</b> {{ note.author.username }}</p>
+
+{% if note.author.first_name or note.author.last_name %}
+    <p><b>Имя:</b> {{ note.author.first_name }} {{ note.author.last_name }}</p>
+{% endif %}
+
+<p><b>Email:</b> {{ note.author.email }}</p>
+
+<h3>Статус</h3>
+<p>{{ note.status.name }}</p>
+<p>Финальный: {{ note.status.is_final }}</p>
+
+<h3>Категория</h3>
+<p>{{ note.category.name }}</p>
+
+<hr>
+
+{# Показывать кнопки только автору или админу #}
+{% if request.user == note.author or request.user.is_staff %}
+    <a href="{% url 'note_edit' note.id %}">✏️ Редактировать</a>
+    |
+    <a href="{% url 'note_delete' note.id %}" style="color:red;">
+        🗑 Удалить
+    </a>
+{% endif %}
+
+{% endblock %}
