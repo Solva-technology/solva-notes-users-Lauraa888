@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Создать / Редактировать заметку{% endblock %}
+
+{% block content %}
+<h1>{% if form.instance.pk %}Редактировать{% else %}Создать{% endif %} заметку</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div style="margin-bottom: 15px;">
+        <label for="id_title">Заголовок:</label><br>
+        {{ form.title }}
+        {% if form.title.errors %}
+            <div style="color:red;">{{ form.title.errors }}</div>
+        {% endif %}
+    </div>
+    <hr>
+
+    <div style="margin-bottom: 15px;">
+        <label for="id_content">Текст заметки:</label><br>
+        {{ form.content }}
+        {% if form.content.errors %}
+            <div style="color:red;">{{ form.content.errors }}</div>
+        {% endif %}
+    </div>
+    <hr>
+
+    <div style="margin-bottom: 15px;">
+        <label for="id_status">Статус:</label><br>
+        {{ form.status }}
+        {% if form.status.errors %}
+            <div style="color:red;">{{ form.status.errors }}</div>
+        {% endif %}
+    </div>
+    <hr>
+
+    <div style="margin-bottom: 15px;">
+        <label for="id_category">Категория:</label><br>
+        {{ form.category }}
+        {% if form.category.errors %}
+            <div style="color:red;">{{ form.category.errors }}</div>
+        {% endif %}
+    </div>
+    <hr>
+
+    <button type="submit">💾 Сохранить</button>
+</form>
+{% endblock %}
